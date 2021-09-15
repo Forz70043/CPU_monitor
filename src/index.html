@@ -7,14 +7,19 @@
   </head>
   <body>
     <div class="box">
+      <div class="boxChart">
+        <canvas id="chartCPU" width="400" height="400"></canvas>
+      </div>
       <span class="label">CPU (%)</span>
       <span id="cpu">-</span>
     </div>
     <div class="box">
+      <canvas id="chartMem" width="200" height="200"></canvas>
       <span class="label">Mem (%)</span>
       <span id="mem">-</span>
     </div>
     <div class="box">
+      <canvas id="chartTotMem" width="200" height="200"></canvas>
       <span class="label">Tot Mem (GB)</span>
       <span id="totmem">-</span>
     </div>
