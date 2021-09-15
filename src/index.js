@@ -41,7 +41,7 @@ const createWindow = () => {
       //console.log("Tot Mem (GB): "+ os.totalmem() / 1024);
       mainWindow.webContents.send('totmem', os.totalmem() / 1024);
     })
-  }, 1000);
+  }, 2000);
   
 
 };
