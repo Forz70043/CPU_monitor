@@ -5,7 +5,7 @@
 
 
 
- - clone this repo and `cd CPU_monitor && npm install && npm run make`
+ - clone this repo and `cd CPU_monitor && npm install && npm run start`
 
 
 ## same useful electron command
