@@ -19,8 +19,9 @@ window.addEventListener('load', function() {
     console.log("ctx: ",ctx)
     let cty = document.getElementById('chartMem');
     let ctz = document.getElementById('chartTotMem');
-
-    let labels = [1,2,3,4,5];
+    let date = new Date();
+    let myDate = ''+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+    let labels = [myDate];
     cpuChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -95,7 +96,7 @@ window.addEventListener('load', function() {
 
 
 function addData(chart, label, data) {
-    //chart.data.labels.push(label);
+    chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
     });
@@ -107,8 +108,9 @@ function addData(chart, label, data) {
 ipcRenderer.on('cpu', (event, data)=>{
     dataCPU.push(data.toFixed(2));
     document.getElementById('cpu').innerHTML = data.toFixed(2);
-
-    addData(cpuChart ,dataCPU.length , data.toFixed(2))
+    let date = new Date();
+    let myDate = ''+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+    addData(cpuChart ,myDate, data.toFixed(2))
 });
 
 ipcRenderer.on('mem', (event, data)=>{
