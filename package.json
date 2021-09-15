@@ -2,7 +2,7 @@
   "name": "electronapp",
   "productName": "electronapp",
   "version": "1.0.0",
-  "private" "true",
+  "private": "true",
   "description": "CPU & Memory Monitor",
   "main": "src/index.js",
   "scripts": {
