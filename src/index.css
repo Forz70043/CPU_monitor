@@ -28,6 +28,12 @@ body {
   line-height: 0.95;
   padding: 0 30px 0 30px;
 }
+.boxChart {
+
+}
+.chartCPU, .chartMem, .chartTotMem {
+  
+}
 .label {
   font-size: 20px;
   font-weight: 600;
