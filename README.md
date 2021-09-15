@@ -1,2 +1,9 @@
-# CPU_monitor
-CPU &amp; Memory monitor with Electron
+# Electron with electron-forge
+
+- create app dir: `create-electron-app NAME`
+
+- run app: `npm run start` 
+
+
+- create distro: `npm run make` 
+
