@@ -1,4 +1,4 @@
-# Electron with electron-forge
+# CPU Monitor with Electron
 
 ![CPU Monitor](https://github.com/Forz70043/CPU_monitor/blob/master/img/CPUMonitor.png)
 
