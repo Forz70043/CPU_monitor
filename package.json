@@ -13,23 +13,26 @@
     "lint": "echo \"No linting configured\"",
     "build-installer": "electron-builder"
   },
-  "build":{
+  "build": {
     "appId": "electronapp",
     "copyright": "Copyright © 2021 ${author}",
-    "win":{
-      "target": ["nsis","deb"],
+    "win": {
+      "target": [
+        "nsis",
+        "deb"
+      ],
       "icon": "src/icon.ico",
       "requestExecutionLevel": "requireAdministrator"
     },
     "nsis": {
       "installerIcon": "src/icon.ico",
-      "uninstallerIcon":"src/icon.ico",
+      "uninstallerIcon": "src/icon.ico",
       "uninstallDisplayName": "CPU Monitor",
       "license": "license.txt",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true
     },
-    "deb":{
+    "deb": {
       "installerIcon": "src/icon.ico"
     }
   },
@@ -67,6 +70,7 @@
     }
   },
   "dependencies": {
+    "chart.js": "^3.5.1",
     "electron-squirrel-startup": "^1.0.0",
     "os-utils": "0.0.14"
   },
