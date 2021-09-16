@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, nativeTheme, ipcMain } = require('electron');
 const os = require('os-utils');
 const path = require('path');
 let utils = require('./utils');
@@ -41,10 +41,26 @@ const createWindow = () => {
       //console.log("Tot Mem (GB): "+ os.totalmem() / 1024);
       mainWindow.webContents.send('totmem', os.totalmem() / 1024);
     })
-  }, 1000);
+  }, 2000);
   
 
 };
+/* 
+
+ipcMain.handle('dark-mode:toggle', () => {    
+  if (nativeTheme.shouldUseDarkColors) {      
+    nativeTheme.themeSource = 'light'    
+  } 
+  else {      
+    nativeTheme.themeSource = 'dark'    
+  }    
+  return nativeTheme.shouldUseDarkColors  
+})
+
+ipcMain.handle('dark-mode:system', () => { nativeTheme.themeSource = 'system'  })
+
+ */
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
