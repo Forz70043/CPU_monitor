@@ -1,5 +1,5 @@
-let electron = require('electron');
-const ipcRenderer = electron.ipcRenderer;
+let {ipcRenderer , contextBridge} = require('electron');
+//const ipcRenderer = electron.ipcRenderer;
 
 let Chart = require('chart.js');
 let utils = require('./utils');
@@ -10,6 +10,13 @@ let dataTotMem = [];
 
 let cpuChart = cpuMem = {};
 
+/* 
+contextBridge.exposeInMainWorld('darkMode', {  
+    toggle: () => ipcRenderer.invoke('dark-mode:toggle'),  
+    system: () => ipcRenderer.invoke('dark-mode:system')
+}); */
+
+
 window.addEventListener('load', function() {
     console.log('All assets are loaded');
 
@@ -18,10 +25,11 @@ window.addEventListener('load', function() {
     let ctx = document.getElementById('chartCPU');
     console.log("ctx: ",ctx)
     let cty = document.getElementById('chartMem');
-    let ctz = document.getElementById('chartTotMem');
+    /* let ctz = document.getElementById('chartTotMem'); */
     let date = new Date();
-    let myDate = ''+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+    let myDate = /*''+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+*/' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
     let labels = [myDate];
+
     cpuChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -91,6 +99,20 @@ window.addEventListener('load', function() {
     });
 
 
+
+/* 
+    document.getElementById('toggle-dark-mode').addEventListener('click', async () => {  
+        const isDarkMode = await window.darkMode.toggle()  
+        document.getElementById('theme-source').innerHTML = isDarkMode ? 'Dark' : 'Light'
+    })
+    
+    document.getElementById('reset-to-system').addEventListener('click', async () => {  
+        await window.darkMode.system()  
+        document.getElementById('theme-source').innerHTML = 'System'
+    })
+
+ */
+
 })
 
 
@@ -98,9 +120,9 @@ function addData(chart, label, data) {
     if(label) chart.data.labels.push(label);
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(data);
+        if(dataset.data.length>10) dataset.data.shift()
     });
-    /* if(chart.data.labels.length>10) chart.data.labels.shift();
-    if(chart.data.datasets[0].data.length>10) chart.data.datasets.shift(); */
+    
     chart.update();
 }
 
@@ -110,7 +132,7 @@ ipcRenderer.on('cpu', (event, data)=>{
     dataCPU.push(data.toFixed(2));
     document.getElementById('cpu').innerHTML = data.toFixed(2);
     let date = new Date();
-    let myDate = ''+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+    let myDate = /*''+date.getDate()+'/'+date.getMonth()+'/'+date.getFullYear()+*/' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
     addData(cpuChart ,myDate, data.toFixed(2));
 });
 
@@ -123,9 +145,9 @@ ipcRenderer.on('mem', (event, data)=>{
     //addData(memChart ,false, [data.toFixed(2),100-data.toFixed(2)]);
     memChart.update();
 });
-
+/* 
 ipcRenderer.on('totmem', (event, data)=>{
     dataTotMem.push(data.toFixed(2));
     //console.log('totmem GB: ' + data);
     document.getElementById('totmem').innerHTML = data.toFixed(2);
-});
+}); */
