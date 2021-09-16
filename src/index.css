@@ -39,3 +39,8 @@ body {
   font-weight: 600;
   color: #efa;
 }
+
+
+
+@media (prefers-color-scheme: dark) {  body { background: #222; color: white; }}
+@media (prefers-color-scheme: light) {  body { background: #ddd; color: black; }}
